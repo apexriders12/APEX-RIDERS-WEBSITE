@@ -1,0 +1,905 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APEX RIDERS | NEW GENERATION</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red:#f51d30;
+  --bg:#080809;
+  --panel:#121215;
+  --white:#f4f4f5;
+  --muted:#929299;
+  --font:'Inter',sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--font);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:
+  radial-gradient(ellipse at 75% 20%,#8e071c26,transparent 45%),
+  radial-gradient(ellipse at 10% 90%,#6d071322,transparent 40%);
+}
+
+.grid{
+  position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background-image:
+  linear-gradient(#ff26350c 1px,transparent 1px),
+  linear-gradient(90deg,#ff26350c 1px,transparent 1px);
+  background-size:55px 55px;
+}
+
+.orb{
+  position:fixed;width:350px;height:350px;
+  background:var(--red);filter:blur(160px);
+  opacity:.08;top:30%;left:35%;pointer-events:none;z-index:-1;
+}
+
+/* NAV */
+
+nav{
+  width:92%;max-width:1400px;margin:20px auto;
+  padding:18px 25px;display:flex;
+  justify-content:space-between;align-items:center;
+  background:#111114e8;border:1px solid #ffffff18;
+  backdrop-filter:blur(20px);border-radius:8px;
+  position:sticky;top:12px;z-index:100;
+}
+
+.logo{font-family:Orbitron;font-weight:900;letter-spacing:3px}
+.logo span,.red{color:var(--red)}
+
+.navlinks{display:flex;gap:27px}
+.navlinks a{font-size:10px;letter-spacing:1.5px;color:#aaa;transition:.3s}
+.navlinks a:hover{color:var(--red)}
+
+.menu{display:none;background:none;color:white;border:1px solid #555;padding:8px 12px}
+
+/* HERO */
+
+.hero{
+  width:90%;max-width:1400px;min-height:83vh;
+  margin:auto;display:grid;grid-template-columns:.9fr 1.1fr;
+  align-items:center;gap:25px;padding:60px 0;
+}
+
+.eyebrow{
+  font:11px Orbitron;color:var(--red);
+  letter-spacing:4px;margin-bottom:25px;
+}
+
+.hero h1{
+  font:900 clamp(43px,6.5vw,88px)/1.04 Orbitron;
+  letter-spacing:-4px;
+}
+
+.hero h1 span{
+  color:transparent;-webkit-text-stroke:1px var(--red);
+  text-shadow:0 0 35px #ff1d3033;
+}
+
+.hero-desc{max-width:460px;color:var(--muted);font-size:13px;line-height:2;margin:25px 0 30px}
+
+.btn{
+  display:inline-block;padding:16px 26px;
+  background:var(--red);color:white;
+  font:11px Orbitron;letter-spacing:2px;
+  box-shadow:0 0 25px #ff1d3033;transition:.3s;
+  border:1px solid var(--red);
+}
+.btn:hover{background:transparent;transform:translateY(-5px);box-shadow:0 0 30px #ff1d3066}
+
+.stats{display:flex;gap:35px;margin-top:45px}
+.stat strong{font:22px Orbitron;color:var(--red)}
+.stat small{display:block;color:#777;font-size:9px;letter-spacing:1px;margin-top:8px}
+
+/* NEW 3D MOTORCYCLE DISPLAY */
+
+.bike-stage{
+  position:relative;height:470px;
+  display:grid;place-items:center;
+  perspective:1200px;isolation:isolate;
+}
+
+.bike-stage:before{
+  content:"";position:absolute;width:85%;height:60%;
+  background:radial-gradient(ellipse,#f51d3033,transparent 70%);
+  filter:blur(30px);
+}
+
+.bike-platform{
+  position:absolute;bottom:40px;width:80%;height:55px;
+  border-radius:50%;
+  background:linear-gradient(180deg,#38383d,#09090b 60%);
+  border:2px solid #555;
+  box-shadow:0 15px 35px #000,inset 0 4px 12px #ffffff22;
+  transform:rotateX(65deg);
+}
+
+.platform-light{
+  position:absolute;bottom:65px;width:74%;height:3px;
+  background:var(--red);box-shadow:0 0 20px var(--red);
+  border-radius:50%;
+}
+
+.bike-rotation{
+  position:relative;width:100%;max-width:680px;
+  transform-style:preserve-3d;
+  animation:rotateBike 13s linear infinite;
+  z-index:2;
+}
+
+@keyframes rotateBike{
+  0%{transform:rotateY(-18deg) rotateX(5deg)}
+  50%{transform:rotateY(18deg) rotateX(5deg)}
+  100%{transform:rotateY(-18deg) rotateX(5deg)}
+}
+
+.bike-svg{
+  display:block;width:100%;height:auto;
+  overflow:visible;
+  filter:drop-shadow(0 20px 20px #000);
+}
+
+.wheel-spin{transform-box:fill-box;transform-origin:center;animation:wheelSpin 3s linear infinite}
+@keyframes wheelSpin{to{transform:rotate(360deg)}}
+
+.bike-caption{
+  position:absolute;right:2%;bottom:5px;
+  font:9px Orbitron;letter-spacing:4px;color:#777;
+}
+
+/* SECTION LAYOUT */
+
+.content{
+  width:88%;max-width:1250px;
+  margin:120px auto;scroll-margin-top:100px;
+}
+
+.section-title{
+  display:flex;align-items:center;gap:17px;margin-bottom:40px;
+}
+
+.section-title small{font:12px Orbitron;color:var(--red)}
+.section-title h2{font:700 clamp(23px,4vw,35px) Orbitron}
+.section-title:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,var(--red),transparent)}
+
+.panel-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+
+.panel{
+  position:relative;overflow:hidden;
+  padding:38px;background:linear-gradient(145deg,#19191d,#0c0c0e);
+  border:1px solid #ffffff14;transition:.4s;
+}
+
+.panel:after{
+  content:"";position:absolute;width:140px;height:140px;
+  right:-70px;bottom:-70px;background:var(--red);
+  filter:blur(85px);opacity:.15;pointer-events:none;
+}
+
+.panel:hover{transform:translateY(-7px);border-color:#f51d3066}
+.panel h3{font:15px Orbitron;color:var(--red);margin-bottom:20px}
+.panel p{font-size:13px;color:#aaa;line-height:2}
+
+.big-text{font:900 55px Orbitron;color:var(--red);margin-bottom:15px}
+
+/* HISTORY */
+
+.timeline{border-left:1px solid #f51d3066;margin-left:12px}
+
+.event{
+  position:relative;margin:0 0 25px 35px;
+  padding:25px;background:#131316;
+  border:1px solid #ffffff12;transition:.3s;
+}
+.event:before{
+  content:"";position:absolute;width:12px;height:12px;
+  background:var(--red);border-radius:50%;
+  left:-42px;top:30px;box-shadow:0 0 15px var(--red);
+}
+.event:hover{border-color:var(--red);transform:translateX(7px)}
+.event small{font:10px Orbitron;color:var(--red);letter-spacing:2px}
+.event h3{font:15px Orbitron;margin:12px 0}
+.event p{font-size:13px;line-height:1.9;color:#999}
+
+/* EXPANDED HISTORY */
+
+.history-intro{
+  padding:30px 34px;margin-bottom:35px;
+  background:linear-gradient(135deg,#19191d,#0c0c0e);
+  border:1px solid #f51d3033;border-left:3px solid var(--red);
+}
+.history-intro p,.history-closing p{
+  font-size:13px;line-height:2;color:#aaa;margin:0 0 13px;
+}
+.history-intro p:last-child,.history-closing p:last-of-type{margin-bottom:0}
+.event p+p{margin-top:12px}
+.history-message{
+  margin-top:45px;padding:38px;
+  background:linear-gradient(145deg,#1b1114,#0c0c0e);
+  border:1px solid #f51d3055;
+}
+.history-kicker{font:11px Orbitron;color:var(--red);letter-spacing:3px;margin-bottom:14px}
+.history-message h3{font:22px Orbitron;margin-bottom:22px}
+.history-message blockquote{
+  margin:0;padding-left:20px;border-left:2px solid var(--red);
+  color:#bbb;font-size:13px;line-height:2;font-style:italic;
+}
+.founder-quote{
+  margin-top:28px;color:var(--red);font:700 16px Orbitron;letter-spacing:1px;
+}
+.founder-credit{margin-top:12px;color:#888;font-size:11px;letter-spacing:1px}
+.history-closing{
+  margin-top:20px;padding:32px;
+  background:#131316;border:1px solid #ffffff18;text-align:center;
+}
+.history-closing h3{font:15px Orbitron;color:var(--red);letter-spacing:2px;margin-bottom:15px}
+.history-closing strong,.history-closing span{
+  display:block;font:700 13px Orbitron;letter-spacing:2px;margin-top:22px;
+}
+.history-closing span{color:var(--red);font-size:clamp(11px,2vw,15px);margin-top:12px}
+
+/* MISSION AND VISION */
+
+.mv-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.mv{
+  min-height:260px;padding:40px;
+  background:linear-gradient(140deg,#19191d,#0d0d0f);
+  border:1px solid #ffffff17;transition:.4s;
+}
+.mv:hover{transform:perspective(900px) rotateY(-4deg) translateY(-7px);border-color:var(--red)}
+.mv .icon{font-size:35px;margin-bottom:25px}
+.mv h3{font:18px Orbitron;color:var(--red);margin-bottom:20px}
+.mv p{font-size:13px;line-height:2;color:#aaa}
+
+/* RULES */
+
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.rule{
+  padding:24px;display:flex;gap:20px;
+  background:#141417;border:1px solid #ffffff13;transition:.3s;
+}
+.rule:hover{transform:translateY(-5px);border-color:var(--red)}
+.rule b{font:22px Orbitron;color:var(--red)}
+.rule strong{display:block;font-size:13px;margin-bottom:8px}
+.rule p{font-size:12px;color:#999;line-height:1.8}
+
+/* DETAILED RULES, MEMBER BULLETINS & SPECIALIZED CLUBS */
+
+.rule-detail{
+  padding:26px 28px;
+  background:#141417;
+  border:1px solid #ffffff13;
+  transition:.3s;
+}
+.rule-detail:hover{transform:translateY(-4px);border-color:var(--red)}
+.rule-detail h3{
+  font:15px Orbitron;
+  color:var(--red);
+  margin-bottom:14px;
+}
+.rule-detail p,.rule-detail li{
+  font-size:12px;
+  line-height:1.9;
+  color:#aaa;
+}
+.rule-detail ul{padding-left:20px;margin-top:8px}
+.rule-detail li{margin:4px 0}
+.rule-number{
+  display:inline-block;
+  color:#777;
+  font:11px Orbitron;
+  letter-spacing:2px;
+  margin-bottom:12px;
+}
+.bulletin-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:12px;
+}
+.member-bulletin{
+  padding:18px 20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  background:linear-gradient(135deg,#19191d,#0d0d0f);
+  border:1px solid #ffffff18;
+  border-left:3px solid var(--red);
+  font:13px Orbitron;
+  letter-spacing:1px;
+  color:#f4f4f5;
+  transition:.3s;
+}
+.member-bulletin:hover{
+  transform:translateX(5px);
+  border-color:var(--red);
+}
+.member-bulletin .bullet{
+  color:var(--red);
+  font-size:18px;
+}
+.club-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.club-card{
+  padding:30px;
+  background:linear-gradient(145deg,#19191d,#0c0c0e);
+  border:1px solid #ffffff17;
+  transition:.3s;
+}
+.club-card:hover{transform:translateY(-5px);border-color:var(--red)}
+.club-card .club-icon{font-size:30px;margin-bottom:16px}
+.club-card h3{font:17px Orbitron;color:var(--red);margin-bottom:15px}
+.club-card p,.club-card li{
+  font-size:12px;
+  color:#aaa;
+  line-height:1.9;
+}
+.club-card ul{padding-left:20px;margin:8px 0 14px}
+.club-card strong{color:#eee}
+.club-note{
+  margin-top:20px;
+  padding:18px 22px;
+  border-left:3px solid var(--red);
+  background:#141417;
+  color:#aaa;
+  font-size:12px;
+  line-height:1.9;
+}
+
+@media(max-width:600px){
+ .club-grid{grid-template-columns:1fr}
+}
+
+/* CUSTOM SECTIONS */
+
+.custom-card{padding:30px;background:#141417;border:1px solid #ffffff17;margin-bottom:15px}
+.custom-card h3{font:17px Orbitron;color:var(--red);margin-bottom:12px}
+.custom-card p{font-size:13px;color:#aaa;line-height:1.8}
+
+.cta{
+  width:88%;max-width:1250px;margin:120px auto;
+  padding:75px 25px;text-align:center;
+  background:linear-gradient(120deg,#4a090e,#111114 75%);
+  border:1px solid #f51d3055;
+}
+.cta h2{font:900 clamp(28px,5vw,48px) Orbitron}
+.cta h2 span{color:var(--red)}
+.cta p{color:#aaa;margin:20px 0 30px;font-size:13px}
+
+footer{
+  border-top:1px solid #ffffff17;
+  padding:40px 7%;display:flex;
+  justify-content:space-between;gap:20px;
+  color:#777;font-size:10px;letter-spacing:1px;
+}
+footer span{color:var(--red)}
+
+@media(max-width:850px){
+ .hero{grid-template-columns:1fr;text-align:center}
+ .hero-desc{margin-left:auto;margin-right:auto}
+ .stats{justify-content:center}
+ .bike-stage{height:390px}
+ .panel-grid,.mv-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+ nav{padding:15px}
+ .menu{display:block}
+ .navlinks{
+  display:none;position:absolute;top:65px;left:0;right:0;
+  flex-direction:column;background:#101013;padding:25px;
+ }
+ .navlinks.show{display:flex}
+ .bike-stage{height:290px}
+ .hero h1{letter-spacing:-2px}
+ .rules-grid{grid-template-columns:1fr}
+ .panel,.mv{padding:26px}
+ .content{margin:80px auto}
+ footer{flex-direction:column}
+ .editor{width:min(370px,100%)}
+}
+</style>
+</head>
+
+<body>
+<div class="grid"></div>
+<div class="orb"></div>
+
+<nav>
+ <div class="logo">APEX <span>RIDERS</span></div>
+
+ <div class="navlinks" id="navlinks">
+  <a href="#about">ABOUT</a>
+  <a href="#history">HISTORY</a>
+  <a href="#mission">MISSION & VISION</a>
+  <a href="#rules">RULES</a>
+  <a href="#members">MEMBERS</a>
+  <a href="#hall-of-fame">HALL OF FAME</a>
+  <a href="#specialized-clubs">SPECIALIZED CLUBS</a>
+ </div>
+
+ <button class="menu" onclick="document.getElementById('navlinks').classList.toggle('show')">☰</button>
+</nav>
+
+<main id="website">
+
+<header class="hero">
+ <div>
+  <div class="eyebrow" data-editable>// THE ROAD IS OUR TERRITORY</div>
+
+  <h1 data-editable>
+   RIDE WITH<br>
+   <span>APEX RIDERS.</span><br>
+   LIVE FREE.
+  </h1>
+
+  <p class="hero-desc" data-editable>
+   More than a riding group. A community built on
+   passion, brotherhood, discipline, and the freedom
+   of the open road. Welcome to Apex Riders.
+  </p>
+
+  <a class="btn" href="#about">DISCOVER APEX ↗</a>
+
+  <div class="stats">
+   <div class="stat"><strong>01</strong><small>ONE COMMUNITY</small></div>
+   <div class="stat"><strong>∞</strong><small>ENDLESS ROADS</small></div>
+   <div class="stat"><strong>100%</strong><small>RIDER SPIRIT</small></div>
+  </div>
+ </div>
+
+ <!-- NEW MOTORCYCLE -->
+
+ <div class="bike-stage">
+  <div class="bike-platform"></div>
+  <div class="platform-light"></div>
+
+  <div class="bike-rotation" id="bikeModel">
+   <svg class="bike-svg" viewBox="0 0 700 390" xmlns="http://www.w3.org/2000/svg">
+
+    <defs>
+     <linearGradient id="bodyRed" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#ff6972"/>
+      <stop offset=".35" stop-color="#f51d30"/>
+      <stop offset="1" stop-color="#65000c"/>
+     </linearGradient>
+     <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#29292d"/>
+      <stop offset=".5" stop-color="#b8b8c0"/>
+      <stop offset="1" stop-color="#303036"/>
+     </linearGradient>
+     <radialGradient id="tire">
+      <stop offset=".30" stop-color="#161619"/>
+      <stop offset=".32" stop-color="#a0a0a0"/>
+      <stop offset=".37" stop-color="#303035"/>
+      <stop offset=".58" stop-color="#09090b"/>
+      <stop offset=".92" stop-color="#252529"/>
+      <stop offset="1" stop-color="#050506"/>
+     </radialGradient>
+     <filter id="glow">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+     </filter>
+    </defs>
+
+    <!-- SHADOW -->
+    <ellipse cx="350" cy="330" rx="270" ry="18" fill="#000" opacity=".8"/>
+
+    <!-- REAR WHEEL -->
+    <g>
+     <circle cx="170" cy="265" r="91" fill="url(#tire)" stroke="#555" stroke-width="5"/>
+     <circle cx="170" cy="265" r="66" fill="none" stroke="#aaa" stroke-width="4"/>
+     <g class="wheel-spin">
+      <circle cx="170" cy="265" r="51" fill="#222" stroke="#888" stroke-width="3"/>
+      <circle cx="170" cy="265" r="38" fill="none" stroke="#888" stroke-width="3"/>
+      <g stroke="#aaa" stroke-width="4">
+       <path d="M170 214V316 M119 265H221 M134 229L206 301 M206 229L134 301"/>
+      </g>
+      <circle cx="170" cy="265" r="13" fill="#aaa" stroke="#333" stroke-width="5"/>
+      <circle cx="170" cy="265" r="7" fill="#222"/>
+     </g>
+    </g>
+
+    <!-- FRONT WHEEL -->
+    <g>
+     <circle cx="545" cy="265" r="91" fill="url(#tire)" stroke="#555" stroke-width="5"/>
+     <circle cx="545" cy="265" r="66" fill="none" stroke="#aaa" stroke-width="4"/>
+     <g class="wheel-spin">
+      <circle cx="545" cy="265" r="51" fill="#222" stroke="#888" stroke-width="3"/>
+      <circle cx="545" cy="265" r="38" fill="none" stroke="#888" stroke-width="3"/>
+      <g stroke="#aaa" stroke-width="4">
+       <path d="M545 214V316 M494 265H596 M509 229L581 301 M581 229L509 301"/>
+      </g>
+      <circle cx="545" cy="265" r="13" fill="#aaa" stroke="#333" stroke-width="5"/>
+      <circle cx="545" cy="265" r="7" fill="#222"/>
+     </g>
+    </g>
+
+    <!-- FRAME -->
+    <g fill="none" stroke="url(#metal)" stroke-width="13" stroke-linecap="round">
+     <path d="M170 265L305 165L430 260L170 265"/>
+     <path d="M305 165L390 135L545 265"/>
+     <path d="M305 165L430 260"/>
+    </g>
+
+    <!-- ENGINE -->
+    <path d="M275 185L385 177L414 248L300 260L260 225Z"
+      fill="#242428" stroke="#999" stroke-width="5"/>
+    <g stroke="#777" stroke-width="5">
+     <path d="M285 204H385 M280 218H392 M295 233H402 M310 247H398"/>
+    </g>
+    <circle cx="350" cy="221" r="28" fill="#111" stroke="#999" stroke-width="5"/>
+    <circle cx="350" cy="221" r="12" fill="#555" stroke="#aaa" stroke-width="3"/>
+
+    <!-- EXHAUST -->
+    <path d="M290 255L220 282L165 280" fill="none" stroke="#666" stroke-width="15" stroke-linecap="round"/>
+    <path d="M290 255L220 282L165 280" fill="none" stroke="#bbb" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- TAIL -->
+    <path d="M160 125L265 126L309 164L230 190L142 165Z"
+      fill="url(#bodyRed)" stroke="#ff7b84" stroke-width="3"/>
+    <path d="M150 130L237 145L273 165" fill="none" stroke="#ffb1b4" stroke-width="3"/>
+
+    <!-- SEAT -->
+    <path d="M225 125L340 121L372 145L280 155L225 145Z"
+      fill="#111" stroke="#444" stroke-width="3"/>
+
+    <!-- FUEL TANK -->
+    <path d="M260 119L303 85L405 79L455 123L425 175L330 181L274 153Z"
+      fill="url(#bodyRed)" stroke="#ff777f" stroke-width="4"/>
+    <path d="M303 92L390 86L435 119" fill="none" stroke="#ffadb0" stroke-width="4"/>
+    <path d="M285 145L420 150" fill="none" stroke="#75000a" stroke-width="5"/>
+
+    <!-- SIDE FAIRING -->
+    <path d="M380 157L480 129L526 179L481 223L414 245L380 207Z"
+      fill="url(#bodyRed)" stroke="#ff5964" stroke-width="4"/>
+    <path d="M407 170L484 151L464 190L408 214Z" fill="#141417" stroke="#777" stroke-width="2"/>
+    <path d="M418 177L466 163L451 181L420 197Z" fill="#f51d30"/>
+    <path d="M450 213L502 193L480 230L430 243Z" fill="#101013"/>
+
+    <!-- FRONT COWL -->
+    <path d="M443 112L502 85L568 112L588 166L539 192L484 158Z"
+      fill="url(#bodyRed)" stroke="#ff6a72" stroke-width="4"/>
+    <path d="M508 96L565 116L548 133L493 128Z" fill="#111" stroke="#777" stroke-width="2"/>
+
+    <!-- WINDSCREEN -->
+    <path d="M466 109L480 54L534 48L565 102L520 117Z"
+      fill="#151a20" stroke="#aaa" stroke-width="3" opacity=".9"/>
+
+    <!-- HANDLEBARS -->
+    <path d="M487 102L470 69L433 62 M548 108L582 70L618 67"
+      fill="none" stroke="#999" stroke-width="8" stroke-linecap="round"/>
+
+    <!-- FORKS -->
+    <path d="M500 153L545 264 M520 153L566 257"
+      stroke="url(#metal)" stroke-width="10" fill="none"/>
+
+    <!-- HEADLIGHT -->
+    <path d="M511 139L549 133L570 152L540 165L511 157Z"
+      fill="#f6f4e9" filter="url(#glow)"/>
+    <path d="M511 139L549 133L570 152L540 165L511 157Z"
+      fill="none" stroke="#fff" stroke-width="3"/>
+
+    <!-- REAR LIGHT -->
+    <path d="M142 155L165 162L152 174L132 165Z"
+      fill="#ff182e" filter="url(#glow)"/>
+
+    <!-- MIRRORS -->
+    <path d="M487 102L456 46L431 43 M557 107L586 46L611 42"
+      stroke="#888" stroke-width="5" fill="none"/>
+    <ellipse cx="428" cy="41" rx="14" ry="7" fill="#444" stroke="#aaa" stroke-width="2"/>
+    <ellipse cx="615" cy="40" rx="14" ry="7" fill="#444" stroke="#aaa" stroke-width="2"/>
+
+    <!-- BRAKE DISC -->
+    <circle cx="545" cy="265" r="35" fill="none" stroke="#aaa" stroke-width="5" stroke-dasharray="5 5"/>
+    <circle cx="170" cy="265" r="35" fill="none" stroke="#aaa" stroke-width="5" stroke-dasharray="5 5"/>
+
+    <!-- ACCENTS -->
+    <path d="M463 227L508 210" stroke="#ff2638" stroke-width="5" filter="url(#glow)"/>
+    <path d="M280 165L322 178" stroke="#ff2638" stroke-width="4"/>
+   </svg>
+  </div>
+
+  <div class="bike-caption">APEX RIDERS / NEW GENERATION</div>
+ </div>
+</header>
+
+<!-- ABOUT -->
+
+<section class="content" id="about">
+ <div class="section-title"><small>01 /</small><h2 data-editable>ABOUT APEX</h2></div>
+
+ <div class="panel-grid">
+  <div class="panel">
+   <h3 data-editable>WHO WE ARE</h3>
+   <h2>
+    They call us a clan, but we know better. We are family. We ride together, we stand together.
+   </h2>
+  </div>
+
+  <div class="panel">
+   <div class="big-text" data-editable>APEX.</div>
+   <h3 data-editable>MORE THAN A RIDING GROUP</h3>
+   <p data-editable>One passion. One community. One road. United by the same spirit.</p>
+  </div>
+ </div>
+</section>
+
+<!-- HISTORY -->
+
+<section class="content" id="history">
+ <div class="section-title"><small>02 /</small><h2 data-editable>THE HISTORY OF APEX RIDERS</h2></div>
+
+ <div class="history-intro" data-editable>
+  <p>APEX RIDERS is more than just a motorcycle racing group in Roblox's Drag Drive Simulator. It began as a group of friends who shared a passion for motorcycles, racing, and adventure. Over time, it grew into a community built on friendship, loyalty, respect, teamwork, and brotherhood.</p>
+  <p>Behind every race, tambike, event, and achievement were people who helped make APEX RIDERS what it became.</p>
+ </div>
+
+ <div class="timeline">
+  <article class="event">
+   <small data-editable>01 / SEPTEMBER 12, 2025</small>
+   <h3 data-editable>THE BEGINNING — WHERE IT ALL STARTED</h3>
+   <p data-editable>APEX RIDERS was founded on September 12, 2025, by APEX_Yuji, also known as Kapitan Yuji. At first, the goal was simple: bring together people who enjoyed riding and racing in Drag Drive Simulator. As more members joined, the group slowly became something bigger. It was no longer just about winning races. It was about making friends, building connections, helping one another, and creating memories together.</p>
+  </article>
+
+  <article class="event">
+   <small data-editable>02 / COMMUNITY GROWTH</small>
+   <h3 data-editable>BUILDING THE FAMILY</h3>
+   <p data-editable>As APEX RIDERS grew, members began taking on responsibilities to help manage the community. The group developed a leadership structure that included an Owner and Co-Owners, Head Administrators and Administrators, Moderators, Racing Heads for Drag and Circuit, a Media Team, Recruiters, Uniform Designers, and the Apex Lady Riders team.</p>
+   <p data-editable>Each position had a purpose. Some members managed the community, while others organized races, welcomed new members, designed uniforms, and documented the group's activities. APEX RIDERS also established rules to encourage respect, discipline, loyalty, and clean racing.</p>
+  </article>
+
+  <article class="event">
+   <small data-editable>03 / EVENTS & ACHIEVEMENTS</small>
+   <h3 data-editable>EVENTS, COLLABORATIONS, AND ACHIEVEMENTS</h3>
+   <p data-editable>Throughout its journey, APEX RIDERS participated in activities, collaborations, and racing events. Memorable moments included collaborations with KSx, RBD, and AE; participation in The Isle of Bandung Race Event, where APEX members achieved first place and other placements; group tambikes and community rides; Christmas and Year-End celebrations; recruitment activities; and connections with other racing communities.</p>
+   <p data-editable>These experiences strengthened relationships among members and created memories worth keeping.</p>
+  </article>
+
+  <article class="event">
+   <small data-editable>04 / LEADERSHIP TRANSITIONS</small>
+   <h3 data-editable>CHALLENGES AND CHANGES IN LEADERSHIP</h3>
+   <p data-editable>Like every organization, APEX RIDERS experienced challenges. Some members became inactive because of school, personal responsibilities, or other priorities. Others left, while some accepted new responsibilities to keep the community running.</p>
+   <p data-editable>Leadership went through several transitions as different members stepped up to manage the clan and continue the responsibilities of previous leaders. Kapitan Yuji also considered stepping back and allowing other leaders to take responsibility for the community. These changes were not always easy, but they became part of APEX RIDERS' story.</p>
+  </article>
+
+  <article class="event">
+   <small data-editable>05 / A QUIETER CHAPTER</small>
+   <h3 data-editable>THE INACTIVE PERIOD</h3>
+   <p data-editable>Eventually, APEX RIDERS experienced a period of inactivity. Group rides became less frequent, conversations slowed down, and members focused more on their individual lives.</p>
+   <p data-editable>However, inactivity did not erase what members had experienced together. The friendships, achievements, laughter, and memories remained part of the community's history.</p>
+  </article>
+
+  <article class="event">
+   <small data-editable>06 / SEPTEMBER 12, 2026</small>
+   <h3 data-editable>REUNITED — FIRST ANNIVERSARY</h3>
+   <p data-editable>On September 12, 2026, APEX RIDERS celebrated its first anniversary with the theme REUNITED.</p>
+   <p data-editable>Despite the clan being inactive, former and current members came together for the anniversary tambike. It was a reminder that even when people go their separate ways, the memories they created remain.</p>
+   <p data-editable>The anniversary was not simply about celebrating one year of existence. It was about remembering where everything started, appreciating everyone who became part of the journey, and recognizing the people who helped build APEX RIDERS.</p>
+  </article>
+
+  <article class="event">
+   <small data-editable>07 / THE LEGACY</small>
+   <h3 data-editable>THE LEGACY OF APEX RIDERS</h3>
+   <p data-editable>From September 12, 2025, to its first anniversary on September 12, 2026, APEX RIDERS completed a journey filled with different people, experiences, and challenges.</p>
+   <p data-editable>Some members stayed until the end. Some moved on. Some became leaders, while others quietly supported the community behind the scenes. Every person who became part of APEX RIDERS contributed something to its story.</p>
+   <p data-editable>The real success of APEX RIDERS was never measured only by the number of members, trophies, or victories. It was measured by the friendships it created and the memories people would carry even after the community became inactive.</p>
+  </article>
+ </div>
+
+ <div class="history-message">
+  <div class="history-kicker" data-editable> A MESSAGE FROM THE FOUNDER </div>
+  <h3 data-editable>APEX_Yuji</h3>
+  <blockquote data-editable>
+   I created APEX RIDERS with a simple dream: to build a community where people could enjoy riding, racing, and spending time together. I never expected it to become something that would mean so much to me.<br><br>
+   There were good days, difficult days, misunderstandings, changes, and moments when I almost wanted to give everything up. But looking back, I wouldn't trade those memories for anything.<br><br>
+   To everyone who became part of APEX RIDERS, thank you. Whether you stayed for a long time or only for a short period, you became part of something I will always be proud of.<br><br>
+   APEX RIDERS may no longer be as active as before, but its history will never disappear.<br><br>
+   We started as riders, but we became a family.
+  </blockquote>
+  <p class="founder-quote" data-editable>“RUN YOUR ENGINE, NOT YOUR MOUTH.”</p>
+  <p class="founder-credit" data-editable>— APEX_Yuji / Founder and Former Kapitan, APEX RIDERS</p>
+ </div>
+
+ <div class="history-closing" data-editable>
+  <h3>CLOSING</h3>
+  <p>APEX RIDERS may have changed, and its members may now be following different roads, but the story of the community remains. Its first year will always stand as a reminder of what a group of friends can build when they share a passion and look out for one another.</p>
+  <strong>APEX RIDERS • 2025–2026</strong>
+  <span>ONE FAMILY. ONE JOURNEY. COUNTLESS MEMORIES.</span>
+ </div>
+</section>
+
+<!-- MISSION AND VISION -->
+
+<section class="content" id="mission">
+ <div class="section-title"><small>03 /</small><h2 data-editable>MISSION & VISION</h2></div>
+
+ <div class="mv-grid">
+  <div class="mv">
+   <div class="icon">⚡</div>
+   <h3 data-editable>OUR MISSION</h3>
+   <p data-editable>
+    To create a united and responsible motorcycle
+    community that promotes road safety, discipline,
+    respect, teamwork, and genuine brotherhood.
+    We aim to provide meaningful experiences and
+    encourage every member to become a better rider.
+   </p>
+  </div>
+
+  <div class="mv">
+   <div class="icon">🏁</div>
+   <h3 data-editable>OUR VISION</h3>
+   <p data-editable>
+    To become a respected motorcycle community known
+    for unity, positive influence, responsible riding,
+    and strong connections. We envision a group where
+    every rider feels welcomed, valued, and inspired.
+   </p>
+  </div>
+ </div>
+</section>
+
+<!-- RULES -->
+<section class="content" id="rules">
+ <div class="section-title"><small>04 /</small><h2 data-editable>RULES & REGULATIONS</h2></div>
+
+ <div class="rules-grid">
+  <article class="rule-detail">
+   <div class="rule-number">RULE 01</div>
+   <h3>RESPECT EVERYONE</h3>
+   <p>Be polite to members, admins, opponents, and other clans. No trash talk, bullying, or rude behavior.</p>
+  </article>
+
+  <article class="rule-detail">
+   <div class="rule-number">RULE 02</div>
+   <h3>BE RESPONSIBLE</h3>
+   <p>Think before you act. Your behavior represents the whole team.</p>
+  </article>
+
+  <article class="rule-detail">
+   <div class="rule-number">RULE 03</div>
+   <h3>CONFLICT POLICY</h3>
+   <ul>
+    <li>DO NOT fight back if someone provokes you.</li>
+    <li>Report immediately to any Admin or Head Admin.</li>
+    <li>Must provide evidence: screenshots, clips, or proof of incident.</li>
+   </ul>
+  </article>
+
+  <article class="rule-detail">
+   <div class="rule-number">RULE 04</div>
+   <h3>COMPLAINT CHANNEL</h3>
+   <p>You may approach the Head Admin, any Admin, or Captain of Both Factions for concerns.</p>
+  </article>
+
+  <article class="rule-detail">
+   <div class="rule-number">RULE 05</div>
+   <h3>ACTIVITY RULE</h3>
+   <ul>
+    <li>Be active in chats, training, and scheduled events.</li>
+    <li>Notify your Captain if you will be inactive for days.</li>
+    <li><strong>Improvement Focus:</strong> We encourage growth — skill-wise, attitude-wise, and teamwork-wise.</li>
+   </ul>
+  </article>
+ </div>
+</section>
+
+
+<!-- MEMBERS -->
+<section class="content" id="members">
+ <div class="section-title"><small>05 /</small><h2 data-editable>OUR MEMBERS</h2></div>
+ <div class="club-note">
+  The official member bulletin of Apex Riders. Add each active member's exact clan name below.
+ </div>
+ <div class="bulletin-grid" style="margin-top:18px">
+  <div class="member-bulletin"><span class="bullet">◆</span> APEX_Yuji (OWNER)</div>
+  <div class="member-bulletin"><span class="bullet">◆</span> APEX_1nOnlyRen444</div>
+  <div class="member-bulletin"><span class="bullet">◆</span> ADD MEMBER NAME</div>
+  <div class="member-bulletin"><span class="bullet">◆</span> ADD MEMBER NAME</div>
+ </div>
+</section>
+
+<!-- FORMER MEMBERS / HALL OF FAME -->
+<section class="content" id="hall-of-fame">
+ <div class="section-title"><small>06 /</small><h2 data-editable>FORMER MEMBERS — HALL OF FAME</h2></div>
+ <div class="club-note">
+  Honoring former members who were once part of the Apex Riders journey. Their names and contributions remain part of our history.
+ </div>
+ <div class="bulletin-grid" style="margin-top:18px">
+  <div class="member-bulletin"><span class="bullet">★</span> APEX_NARDS</div>
+  <div class="member-bulletin"><span class="bullet">★</span> APEX_Renz</div>
+  <div class="member-bulletin"><span class="bullet">★</span> ADD FORMER MEMBER NAME</div>
+ </div>
+</section>
+
+<!-- SPECIALIZED CLUBS -->
+<section class="content" id="specialized-clubs">
+ <div class="section-title"><small>07 /</small><h2 data-editable>🛑 SPECIALIZED CLUBS (CHOOSE YOUR PATH!)</h2></div>
+ <div class="club-note">
+  Members can join one or more clubs based on interest. Each club has a Club Moderator assigned to lead, teach, and manage.
+ </div>
+
+ <div class="club-grid" style="margin-top:20px">
+  <article class="club-card">
+   <div class="club-icon">🏎️</div>
+   <h3>RACING TEAM</h3>
+   <p><strong>Focus:</strong> Official competitions & events</p>
+   <p><strong>Categories:</strong></p>
+   <ul>
+    <li>Drag Racing (Speed & Acceleration)</li>
+    <li>Circuit Racing (Track & Endurance)</li>
+   </ul>
+   <p><strong>Maps:</strong> Sentul, Mandalika, and official event tracks</p>
+   <p><strong>Goal:</strong> Represent the clan in tournaments & inter-clan matches</p>
+  </article>
+
+  <article class="club-card">
+   <div class="club-icon">📸</div>
+   <h3>MEDIA TEAM</h3>
+   <p><strong>For:</strong> Photography lovers, editors, content creators</p>
+   <p><strong>Work:</strong> Capture races, make montages, edit videos, create posters</p>
+   <p><strong>Goal:</strong> Promote the clan & document memories</p>
+  </article>
+
+  <article class="club-card">
+   <div class="club-icon">🚘</div>
+   <h3>MOTOR SHOW TEAM</h3>
+   <p><strong>Focus:</strong> Judging, aesthetics, motor appreciation</p>
+   <p><strong>Learn:</strong> How to judge bikes, identify quality builds, design concepts</p>
+   <p><strong>Collab:</strong> Works closely with Mechanic Team on custom projects</p>
+  </article>
+
+  <article class="club-card">
+   <div class="club-icon">🔧</div>
+   <h3>MECHANIC TEAM</h3>
+   <p><strong>Role:</strong> Build, tune, test & improve</p>
+   <p><strong>Services:</strong> Free concept designs, engine tuning, performance testing</p>
+   <p><strong>Goal:</strong> Share knowledge on how to make bikes faster & stronger</p>
+  </article>
+ </div>
+</section>
+
+
+<!-- USER-ADDED SECTIONS APPEAR HERE -->
+
+<div id="customSections"></div>
+
+<div class="cta">
+ <h2 data-editable>ONE ROAD.<br><span>ONE APEX.</span></h2>
+ <p data-editable>Ride responsibly. Stand together. Make every journey count.</p>
+ <a class="btn" href="#about">EXPLORE OUR COMMUNITY ↗</a>
+</div>
+
+</main>
+
+<footer>
+ <div>© 2026 <span>APEX RIDERS</span> — OFFICIAL COMMUNITY PORTAL</div>
+ <div>BUILT ON PASSION. UNITED BY THE ROAD.</div>
+</footer>
+<script>
+/* MOBILE NAVIGATION */
+document.querySelector('.menu').addEventListener('click', function(){
+ document.getElementById('navlinks').classList.toggle('show');
+});
+</script>
+</body>
+</html>
+
